@@ -1,10 +1,5 @@
 ﻿using ContactsPersistenceService.Consumer.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactsPersistenceService.Consumer.Data
 {
@@ -15,7 +10,14 @@ namespace ContactsPersistenceService.Consumer.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Contact>().HasKey(c => c.Id);
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.PhoneNumber).IsRequired();
+                entity.Property(e => e.Email).IsRequired();
+                entity.Property(e => e.Ddd).IsRequired();
+            });
             base.OnModelCreating(modelBuilder);
         }
     }
