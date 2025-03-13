@@ -5,13 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-builder.Services.AddSingleton<RabbitMqPublisher>();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    // Opcional: você pode configurar informações adicionais do Swagger aqui
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Title = "API de Cadastro de Contatos",
@@ -28,14 +24,15 @@ builder.Services.AddSingleton(provider =>
     return RabbitMqPublisher.CreateAsync().GetAwaiter().GetResult();
 });
 
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API de Cadastro de Contatos v1");
+    });
 }
 
 app.UseHttpsRedirection();
