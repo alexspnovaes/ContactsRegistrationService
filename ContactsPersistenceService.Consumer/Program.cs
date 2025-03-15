@@ -23,7 +23,7 @@ var builder = Host.CreateDefaultBuilder(args)
 
         services.AddScoped<IContactRepository, ContactRepository>();
         services.AddScoped<IContactService, ContactService>();
-        services.AddHostedService<RabbitMqConsumerService>();
+        services.AddHostedService<ServiceBusConsumerService>();
     });
 
 await builder.Build().RunAsync();

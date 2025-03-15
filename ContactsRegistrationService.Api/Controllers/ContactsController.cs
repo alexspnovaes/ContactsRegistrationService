@@ -9,10 +9,10 @@ namespace ContactsRegistrationService.Api.Controllers
     [Route("api/[controller]")]
     public class ContactsController : ControllerBase
     {
-        private readonly RabbitMqPublisher _publisher;
+        private readonly ServiceBusPublisher _publisher;
         private readonly ILogger<ContactsController> _logger;
 
-        public ContactsController(Services.RabbitMqPublisher publisher, ILogger<ContactsController> logger)
+        public ContactsController(ServiceBusPublisher publisher, ILogger<ContactsController> logger)
         {
             _publisher = publisher;
             _logger = logger;

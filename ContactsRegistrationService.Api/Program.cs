@@ -1,4 +1,5 @@
 using ContactsRegistrationService.Api.Services;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +17,13 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddSingleton(provider =>
 {
-    return RabbitMqPublisher.CreateAsync().GetAwaiter().GetResult();
+    var configuration = provider.GetRequiredService<IConfiguration>();
+    var connectionString = configuration["ServiceBusConnection"];
+    return ServiceBusPublisher.Create(connectionString);
 });
 
 var app = builder.Build();
@@ -34,6 +36,9 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "API de Cadastro de Contatos v1");
     });
 }
+
+app.UseHttpMetrics();
+app.UseMetricServer();
 
 app.UseHttpsRedirection();
 
