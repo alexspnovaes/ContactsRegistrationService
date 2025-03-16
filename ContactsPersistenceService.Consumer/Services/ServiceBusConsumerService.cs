@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
-using Contacts.Shared.Models; 
+using Contacts.Shared.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -28,7 +28,11 @@ namespace ContactsPersistenceService.Consumer.Services
         {
             _client = new ServiceBusClient(_serviceBusConnectionString);
 
-            _processor = _client.CreateProcessor(_queueName, new ServiceBusProcessorOptions());
+            _processor = _client.CreateProcessor(_queueName, new ServiceBusProcessorOptions
+            {
+                AutoCompleteMessages = false,
+                MaxConcurrentCalls = 1
+            });
             _processor.ProcessMessageAsync += MessageHandler;
             _processor.ProcessErrorAsync += ErrorHandler;
 
@@ -85,7 +89,7 @@ namespace ContactsPersistenceService.Consumer.Services
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            return Task.CompletedTask;
+            return Task.Delay(Timeout.Infinite, stoppingToken);
         }
     }
 }

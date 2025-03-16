@@ -10,7 +10,7 @@ namespace ContactsRegistrationService.Api.Services
     {
         private readonly ServiceBusClient _client;
         private readonly ServiceBusSender _sender;
-        private const string QueueName = "contacts_queue";
+        private const string QueueName = "contacts-queue";
 
         private ServiceBusPublisher(ServiceBusClient client, ServiceBusSender sender)
         {

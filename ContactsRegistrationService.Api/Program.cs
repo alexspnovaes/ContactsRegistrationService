@@ -22,7 +22,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSingleton(provider =>
 {
     var configuration = provider.GetRequiredService<IConfiguration>();
-    var connectionString = configuration["ServiceBusConnection"];
+    var connectionString = configuration.GetConnectionString("ServiceBusConnection");
     return ServiceBusPublisher.Create(connectionString);
 });
 
