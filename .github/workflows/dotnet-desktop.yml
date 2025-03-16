@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:  
 
 jobs:
   build-and-test:
@@ -17,8 +18,7 @@ jobs:
       - name: Configurar .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '9.0.x' 
-
+          dotnet-version: '9.0.x'  
       - name: Restaurar dependências
         run: dotnet restore
 
