@@ -26,12 +26,5 @@ jobs:
       - name: Compilar
         run: dotnet build --configuration Release --no-restore
 
-      # Experimente uma das duas abordagens abaixo:
-
-      # Opção 1: Sem a flag --no-build
-      - name: Executar testes (sem --no-build)
-        run: dotnet test --verbosity normal
-
-      # Opção 2: Especificando o arquivo de solução
-      #- name: Executar testes (com solução)
-      #  run: dotnet test ContactsRegistrationService.sln --no-build --verbosity normal
+      - name: Executar testes
+        run: dotnet test --no-build --verbosity normal
