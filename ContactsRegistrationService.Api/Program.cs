@@ -25,6 +25,7 @@ builder.Services.AddSingleton(provider =>
     var connectionString = configuration.GetConnectionString("ServiceBusConnection");
     return ServiceBusPublisher.Create(connectionString);
 });
+builder.Services.AddScoped<IServiceBusPublisher, ServiceBusPublisher>();
 
 var app = builder.Build();
 

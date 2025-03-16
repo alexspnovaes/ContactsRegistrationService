@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contacts.Shared.UnitTests.Models
+namespace ContactsPersistenteService.Consumer.UnitTests.Services
 {
-    internal class ContactTests
+    internal class ContactsConsumerTests
     {
     }
 }

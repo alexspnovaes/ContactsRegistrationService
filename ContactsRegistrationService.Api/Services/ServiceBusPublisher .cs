@@ -6,13 +6,13 @@ using RabbitMQ.Client;
 
 namespace ContactsRegistrationService.Api.Services
 {
-    public class ServiceBusPublisher : IAsyncDisposable
+    public class ServiceBusPublisher : IServiceBusPublisher, IAsyncDisposable
     {
         private readonly ServiceBusClient _client;
         private readonly ServiceBusSender _sender;
         private const string QueueName = "contacts-queue";
 
-        private ServiceBusPublisher(ServiceBusClient client, ServiceBusSender sender)
+        public ServiceBusPublisher(ServiceBusClient client, ServiceBusSender sender)
         {
             _client = client;
             _sender = sender;

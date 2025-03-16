@@ -9,10 +9,10 @@ namespace ContactsRegistrationService.Api.Controllers
     [Route("api/[controller]")]
     public class ContactsController : ControllerBase
     {
-        private readonly ServiceBusPublisher _publisher;
+        private readonly IServiceBusPublisher _publisher;
         private readonly ILogger<ContactsController> _logger;
 
-        public ContactsController(ServiceBusPublisher publisher, ILogger<ContactsController> logger)
+        public ContactsController(IServiceBusPublisher publisher, ILogger<ContactsController> logger)
         {
             _publisher = publisher;
             _logger = logger;
@@ -25,7 +25,7 @@ namespace ContactsRegistrationService.Api.Controllers
         )]
         [SwaggerResponse(202, "Contact accepted for processing.")]
         [SwaggerResponse(400, "Invalid or null data.")]
-        public IActionResult CreateContact([FromBody] ContactDTO contact)
+        public async Task<IActionResult> CreateContact([FromBody] ContactDTO contact)
         {
             if (contact == null)
             {
@@ -33,7 +33,7 @@ namespace ContactsRegistrationService.Api.Controllers
                 return BadRequest("Contact cannot be null.");
             }
 
-            _ = _publisher.PublishContactAsync(contact);
+            await _publisher.PublishContactAsync(contact);
             _logger.LogInformation("Contact {Name} sent to the queue.", contact.Name);
             return Accepted(); 
         }
