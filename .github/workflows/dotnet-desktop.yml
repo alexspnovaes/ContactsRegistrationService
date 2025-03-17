@@ -1,0 +1,33 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v2
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '9.0.x'  
+
+      - name: Restaurar dependências
+        run: dotnet restore
+
+      - name: Compilar
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Executar testes - ContactsRegistrationService.API.Tests
+        run: dotnet test tests/ContactsRegistrationService.API.Tests/ContactsRegistrationService.API.Tests.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Executar testes - Contacts.Shared.UnitTests
+        run: dotnet test tests/Contacts.Shared.UnitTests/Contacts.Shared.UnitTests.csproj --configuration Release --no-build --verbosity normal
