@@ -1,10 +1,10 @@
 using ContactsRegistrationService.Api.Services;
 using Prometheus;
+using Azure.Messaging.ServiceBus;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -23,8 +23,16 @@ builder.Services.AddSingleton(provider =>
 {
     var configuration = provider.GetRequiredService<IConfiguration>();
     var connectionString = configuration.GetConnectionString("ServiceBusConnection");
-    return ServiceBusPublisher.Create(connectionString);
+    return new ServiceBusClient(connectionString);
 });
+
+builder.Services.AddSingleton(provider =>
+{
+    var client = provider.GetRequiredService<ServiceBusClient>();
+    return client.CreateSender("contacts-queue");
+});
+
+
 builder.Services.AddScoped<IServiceBusPublisher, ServiceBusPublisher>();
 
 var app = builder.Build();
@@ -42,9 +50,6 @@ app.UseHttpMetrics();
 app.UseMetricServer();
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
