@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ContactsPersistenceService.Consumer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

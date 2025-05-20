@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+  labels:
+    environment: staging
+    team: your-team
+  annotations:
+    owner: alexandresp_novaes@hotmail.com

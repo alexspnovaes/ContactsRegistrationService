@@ -3,19 +3,45 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsRegistrationService.Api", "ContactsRegistrationService.Api\ContactsRegistrationService.Api.csproj", "{C4899CDB-B9CA-49B0-A3FE-FE7C8F01D639}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsRegistrationService.Api", "src\ContactsRegistrationService.Api\ContactsRegistrationService.Api.csproj", "{C4899CDB-B9CA-49B0-A3FE-FE7C8F01D639}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsPersistenceService.Consumer", "ContactsPersistenceService.Consumer\ContactsPersistenceService.Consumer.csproj", "{49194043-0279-40D7-921B-F33CB03698A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsPersistenceService.Consumer", "src\ContactsPersistenceService.Consumer\ContactsPersistenceService.Consumer.csproj", "{49194043-0279-40D7-921B-F33CB03698A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Shared", "Contacts.Shared\Contacts.Shared.csproj", "{7D7FE08D-AA3C-44B8-8884-347CD4419BE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Shared", "src\Contacts.Shared\Contacts.Shared.csproj", "{7D7FE08D-AA3C-44B8-8884-347CD4419BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Shared.UnitTests", "tests\Contacts.Shared.UnitTests\Contacts.Shared.UnitTests.csproj", "{298475FF-533B-4C3E-A925-084870A76E22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Shared.UnitTests", "src\tests\Contacts.Shared.UnitTests\Contacts.Shared.UnitTests.csproj", "{298475FF-533B-4C3E-A925-084870A76E22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{761A9B33-E65F-4B3A-B451-C06B81FBAD33}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FEDB9A73-A6F7-4E20-BED5-5AFBAAA00C2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsRegistrationService.API.Tests", "tests\ContactsRegistrationService.API.Tests\ContactsRegistrationService.API.Tests.csproj", "{01CBB015-459F-4864-B41E-8EAC2215B4FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsRegistrationService.API.Tests", "src\tests\ContactsRegistrationService.API.Tests\ContactsRegistrationService.API.Tests.csproj", "{01CBB015-459F-4864-B41E-8EAC2215B4FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dev", "dev", "{516B975E-0334-4900-918F-244B041949CE}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\dev\configmap.yaml = k8s\dev\configmap.yaml
+		k8s\dev\deployment.yaml = k8s\dev\deployment.yaml
+		k8s\dev\namespace.yaml = k8s\dev\namespace.yaml
+		k8s\dev\service.yaml = k8s\dev\service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "staging", "staging", "{26E95478-EE89-4C27-88F2-39B77C41139B}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\staging\configmap.yaml = k8s\staging\configmap.yaml
+		k8s\staging\deployment.yaml = k8s\staging\deployment.yaml
+		k8s\staging\namespace.yaml = k8s\staging\namespace.yaml
+		k8s\staging\service.yaml = k8s\staging\service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prod", "prod", "{9BE9E49C-4037-4969-9003-97FB8566356A}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\prod\configmap.yaml = k8s\prod\configmap.yaml
+		k8s\prod\deployment.yaml = k8s\prod\deployment.yaml
+		k8s\prod\namespace.yaml = k8s\prod\namespace.yaml
+		k8s\prod\service.yaml = k8s\prod\service.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,5 +79,11 @@ Global
 		{7D7FE08D-AA3C-44B8-8884-347CD4419BE6} = {FEDB9A73-A6F7-4E20-BED5-5AFBAAA00C2A}
 		{298475FF-533B-4C3E-A925-084870A76E22} = {761A9B33-E65F-4B3A-B451-C06B81FBAD33}
 		{01CBB015-459F-4864-B41E-8EAC2215B4FC} = {761A9B33-E65F-4B3A-B451-C06B81FBAD33}
+		{516B975E-0334-4900-918F-244B041949CE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{26E95478-EE89-4C27-88F2-39B77C41139B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9BE9E49C-4037-4969-9003-97FB8566356A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EFF7A1B-D26C-4CE4-8598-FE7ADDEADA99}
 	EndGlobalSection
 EndGlobal

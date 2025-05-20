@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+  labels:
+    environment: dev
+    team: your-team
+  annotations:
+    owner: alexandresp_novaes@hotmail.com
