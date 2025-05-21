@@ -27,7 +27,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Executar testes - ContactsRegistrationService.API.Tests
-        run: dotnet test tests/ContactsRegistrationService.API.Tests/ContactsRegistrationService.API.Tests.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test src/tests/ContactsRegistrationService.API.Tests/ContactsRegistrationService.API.Tests.csproj --configuration Release --no-build --verbosity normal
 
       - name: Executar testes - Contacts.Shared.UnitTests
-        run: dotnet test tests/Contacts.Shared.UnitTests/Contacts.Shared.UnitTests.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test src/tests/Contacts.Shared.UnitTests/Contacts.Shared.UnitTests.csproj --configuration Release --no-build --verbosity normal
