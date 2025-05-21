@@ -16,11 +16,16 @@ spec:
     spec:
       containers:
       - name: api
-        image: contacts-api:latest
+        image: contacts-api:v2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         env:
+        - name: ConnectionStrings__ServiceBusConnection
+          valueFrom:
+            secretKeyRef:
+              name: servicebus-secret
+              key: ServiceBusConnection
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
         - name: DB_CONNECTION_STRING
@@ -66,6 +71,11 @@ spec:
         image: contacts-consumer:latest
         imagePullPolicy: IfNotPresent
         env:
+        - name: ConnectionStrings__ServiceBusConnection
+          valueFrom:
+            secretKeyRef:
+              name: servicebus-secret
+              key: ServiceBusConnection
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
         - name: DB_CONNECTION_STRING

@@ -23,8 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dev", "dev", "{516B975E-033
 	ProjectSection(SolutionItems) = preProject
 		k8s\dev\configmap.yaml = k8s\dev\configmap.yaml
 		k8s\dev\deployment.yaml = k8s\dev\deployment.yaml
+		k8s\dev\grafana-deployment.yaml = k8s\dev\grafana-deployment.yaml
 		k8s\dev\namespace.yaml = k8s\dev\namespace.yaml
+		k8s\dev\prometheus-configmap.yaml = k8s\dev\prometheus-configmap.yaml
+		k8s\dev\prometheus-deployment.yaml = k8s\dev\prometheus-deployment.yaml
 		k8s\dev\service.yaml = k8s\dev\service.yaml
+		k8s\dev\servicebus-secret.yaml = k8s\dev\servicebus-secret.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "staging", "staging", "{26E95478-EE89-4C27-88F2-39B77C41139B}"

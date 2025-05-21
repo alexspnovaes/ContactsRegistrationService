@@ -1,6 +1,7 @@
 using ContactsRegistrationService.Api.Services;
 using Prometheus;
 using Azure.Messaging.ServiceBus;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +19,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddOpenApi();
-
 builder.Services.AddSingleton(provider =>
 {
     var configuration = provider.GetRequiredService<IConfiguration>();
     var connectionString = configuration.GetConnectionString("ServiceBusConnection");
+    Console.WriteLine(connectionString);
     return new ServiceBusClient(connectionString);
 });
 
